@@ -22,9 +22,11 @@ def paljonisompi(a,b,x):
 
 #4.Tee funktio, joka palauttaa löydetyn alkion naapurit
 def palautanaapurit(li, alkio):
-	for i, x in enumerate(li):
+	i = 0
+	for x in li:
 		if x == alkio:
 			return li[i-1], li[i+1]
+		i += 1
 
 
 ###################
@@ -33,9 +35,11 @@ def palautanaapurit(li, alkio):
 
 #5.Sama ja naapurit
 def sama_naap(li, alkio, raja):
-	for i, x in enumerate(li):
+	i = 0
+	for x in li:
 		if x == alkio:
 			return li[i-raja:i+raja+1]
+		i += 1
 
 #1.Palauta joka toinen
 def jokatoinen(li):
@@ -127,12 +131,10 @@ def summaa_erimittaiset(li_a, li_b):
 
 #11.Tee funktio, joka yhdistää kahden erimittaisen...
 def yhdista(li_a, li_b):
-	lyhyt = None
+	lyhyt = li_b
 	new = []
 	if len(li_a) < len(li_b):
 		lyhyt = li_a
-	else:
-		lyhyt = li_b
 	
 	for x in range(len(lyhyt)):
 		new.append(li_a[x])
