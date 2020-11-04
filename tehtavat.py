@@ -170,9 +170,8 @@ def kertotaulutaulukossa():
 # Oliotehtäviä #
 ################
 
-# 14. Määrittele olioluokka
-
 #tein funktionin sisään, jotta ei tuu erroria kun koitan muita tehtäviä
+#14.Määrittele olioluokka
 def oliotehtava():
 
 	class Auto:
@@ -198,19 +197,14 @@ def nimigeneraattori():
 # Tiedostojen kirjoitus ja luku #
 #################################
 
-#16. Kirjoita taulukon sisältö tekstitiedostoon
-
-def kirjoitatiedostoon(li, fi):
+#16.Kirjoita taulukon sisältö tekstitiedostoon
+def kirjoitatiedostoon(li, fi): #list, file
 	with open(fi, "a") as file:
 		for x in li:
 			file.write(x+"\n")
 
-#taulukko = ["kissa","koira"]
-
-
-#17. Lue tyhjään taulukkoon arvot tekstitiedostosta
-
-def taytataulu(li, fi):
+#17.Lue tyhjään taulukkoon arvot tekstitiedostosta
+def taytataulu(li, fi): #list, file
 	with open(fi, "r") as file:
 		for x in file.read().splitlines():
 			li.append(x)
