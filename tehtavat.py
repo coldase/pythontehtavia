@@ -1,5 +1,6 @@
-
-#Funktiotehtavia
+###################
+# Funktiotehtavia #
+###################
 
 #1.Etsi pienempi
 def pienempi(a,b):
@@ -19,24 +20,22 @@ def paljonisompi(a,b,x):
 		return 0
 	return 1
 
-#4.Tee funktio, joka palauttaa löydetyn...
+#4.Tee funktio, joka palauttaa löydetyn alkion naapurit
 def palautanaapurit(li, alkio):
-	for x in li:
+	for i, x in enumerate(li):
 		if x == alkio:
-			try:
-				return li[x-1], li[x+1]
-			except:
-				pass
-print(palautanaapurit([2,3,4], 3)) 
+			return li[i-1], li[i+1]
 
 
+###################
+# Talukkotehtavia #
+###################
 
-#Talukkotehtavia
-
-####KESKEN####
 #5.Sama ja naapurit
-def sama_naap(li, x, raja):
-	return 
+def sama_naap(li, alkio, raja):
+	for i, x in enumerate(li):
+		if x == alkio:
+			return li[i-raja:i+raja+1]
 
 #1.Palauta joka toinen
 def jokatoinen(li):
@@ -81,24 +80,24 @@ def interactive():
 
 #6.Tee funktio, joka etsii taulukosta pienimmän arvon
 def etsi_pienin(li):
-	new = []
+	new = 0
 	for x in li:
 		if not new:
-			new.append(x)
-		if x < new[0]:
-			new[0] = x
+			new = x
+		if x < new:
+			new = x
 	return new
 
 #7.Tee functio, joka etsii taulukosta suurimman arvon
 def etsi_suurin(li):
-	new = []
+	new = 0
 	for x in li:
 		if not new:
-			new.append(x)
-		if x > new[0]:
-			new[0] = x
-	return new	
-		
+			new = x
+		if x > new:
+			new = x
+	return new
+
 #8.Tee funktio, joka palauttaa taulukon keskiarvon
 def keskiarvo(li):
 	tulos = 0
@@ -129,12 +128,88 @@ def summaa_erimittaiset(li_a, li_b):
 #11.Tee funktio, joka yhdistää kahden erimittaisen...
 def yhdista(li_a, li_b):
 	lyhyt = None
-	if len(li_a):
-		tulos = []
-		for x in li_a:
-			tulos.append(x)
-		for y in li_b:
-			tulos.append(y)
-		return tulos
+	new = []
+	if len(li_a) < len(li_b):
+		lyhyt = li_a
+	else:
+		lyhyt = li_b
+	
+	for x in range(len(lyhyt)):
+		new.append(li_a[x])
+		new.append(li_b[x])
 
-# print(yhdista([2,3,4], [10,20,30,50]))
+	return new
+
+
+###########################
+# Moniulotteiset taulukot #
+###########################
+
+#12.Litistäminen
+def litista(*args):
+	new = []
+	for x in args:
+		for y in x:
+			new.append(y)
+	return new
+
+#13.Tee kertotaulufunktio niin, että tuloksena on kaksiulotteinen...
+def kertotaulutaulukossa():
+	li = []
+	for x in range(1,11):
+		l = []
+		for y in range(1,11):
+			l.append(x*y)
+		li.append(l)
+	return li
+
+
+################
+# Oliotehtäviä #
+################
+
+# 14. Määrittele olioluokka
+
+#tein funktionin sisään, jotta ei tuu erroria kun koitan muita tehtäviä
+def oliotehtava():
+
+	class Auto:
+		def __init__(self, tunniste):
+			self.tunniste = tunniste
+
+	autot = []
+	for x in range(1,11):
+		autot.append(Auto(x))
+
+	for auto in autot:
+		print(f'{auto} - Tunniste: {auto.tunniste}')
+
+
+####################
+# Nimigeneraattori #
+####################
+
+##KESKEN##
+
+#################################
+# Tiedostojen kirjoitus ja luku #
+#################################
+
+#16. Kirjoita taulukon sisältö tekstitiedostoon
+
+def kirjoitatiedostoon(li, fi):
+	with open(fi, "a") as file:
+		for x in taulukko:
+			file.write(x+"\n")
+
+taulukko = ["kissa","koira"]
+
+#17. Lue tyhjään taulukkoon arvot tekstitiedostosta
+
+taulu = []
+def taytataulu(li, fi):
+	with open(fi, "r") as file:
+		for x in file.read().splitlines():
+			li.append(x)
+	return li
+
