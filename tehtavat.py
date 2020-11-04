@@ -189,7 +189,8 @@ def oliotehtava():
 # Nimigeneraattori #
 ####################
 
-##KESKEN##
+def nimigeneraattori():
+	pass
 
 #################################
 # Tiedostojen kirjoitus ja luku #
@@ -199,17 +200,16 @@ def oliotehtava():
 
 def kirjoitatiedostoon(li, fi):
 	with open(fi, "a") as file:
-		for x in taulukko:
+		for x in li:
 			file.write(x+"\n")
 
-taulukko = ["kissa","koira"]
+#taulukko = ["kissa","koira"]
+
 
 #17. Lue tyhjään taulukkoon arvot tekstitiedostosta
 
-taulu = []
 def taytataulu(li, fi):
 	with open(fi, "r") as file:
 		for x in file.read().splitlines():
 			li.append(x)
 	return li
-
