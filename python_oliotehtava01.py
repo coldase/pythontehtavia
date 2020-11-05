@@ -1,5 +1,7 @@
 import pygame
 
+#moro
+
 pygame.init()
 
 screen_width = 400
