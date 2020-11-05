@@ -6,11 +6,13 @@ screen_width = 400
 screen_height = 400
 screen_size = (screen_width, screen_height)
 screen = pygame.display.set_mode(screen_size)
+pygame.display.set_caption("OLIOTEHTAVA")
+
 
 RED = (255,0,0)
 BLACK = (0,0,0)
 WHITE = (255,255,255)
-
+GREEN = (0,255,0)
 FPS = 60
 
 class Olio:
@@ -21,6 +23,8 @@ class Olio:
 		self.pos_y = 200
 		self.size = 20
 		self.rects = self.buttons()
+		self.pos = pygame.mouse.get_pos()
+		self.color = WHITE
 
 	def draw(self):
 		pygame.draw.circle(screen, RED,(self.pos_x, self.pos_y),self.size)
@@ -52,16 +56,16 @@ class Olio:
 			self.pos_x -= self.speed
 			self.pos_y -= self.speed
 
-	def buttons(self):
-		up = pygame.draw.circle(screen, WHITE,(70, 300),10)
-		down = pygame.draw.circle(screen, WHITE,(70, 350),10)
-		left = pygame.draw.circle(screen, WHITE,(45, 325),10)
-		right = pygame.draw.circle(screen, WHITE,(95, 325),10)
+	def buttons(self, color=WHITE):
+		up = pygame.draw.circle(screen, color,(70, 300),10)
+		down = pygame.draw.circle(screen, color,(70, 350),10)
+		left = pygame.draw.circle(screen, color,(45, 325),10)
+		right = pygame.draw.circle(screen, color,(95, 325),10)
 		
-		koil = pygame.draw.circle(screen, WHITE,(90, 305),7)
-		kaak = pygame.draw.circle(screen, WHITE,(90, 345),7)
-		loun = pygame.draw.circle(screen, WHITE,(50, 345),7)
-		luod = pygame.draw.circle(screen, WHITE,(50, 305),7)
+		koil = pygame.draw.circle(screen, color,(90, 305),7)
+		kaak = pygame.draw.circle(screen, color,(90, 345),7)
+		loun = pygame.draw.circle(screen, color,(50, 345),7)
+		luod = pygame.draw.circle(screen, color,(50, 305),7)
 		
 		return up, down, left, right, koil, kaak, loun, luod
 
