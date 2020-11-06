@@ -102,3 +102,12 @@ def puurakenne(ok, at):
 
 	return result
 
+#16.
+def testaaja(a):
+	if a == 5:
+		print("Liian pieni")
+		return -999
+
+def funk(a,b):
+	if a != b:
+		testaaja(a)
