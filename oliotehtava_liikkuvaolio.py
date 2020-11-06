@@ -56,6 +56,18 @@ class Olio:
 			self.pos_x -= self.speed
 			self.pos_y -= self.speed
 
+	def move_with_keys(self):
+		keys = pygame.key.get_pressed()
+		if keys[pygame.K_w] and self.pos_y > self.size:
+			self.pos_y -= self.speed
+		if keys[pygame.K_s] and self.pos_y < screen_width - self.size:
+			self.pos_y += self.speed
+		if keys[pygame.K_a] and self.pos_x > self.size:
+			self.pos_x -= self.speed
+		if keys[pygame.K_d] and self.pos_x < screen_width - self.size:
+			self.pos_x += self.speed
+		
+
 	def buttons(self, color=WHITE):
 		up = pygame.draw.circle(screen, color,(70, 300),10)
 		down = pygame.draw.circle(screen, color,(70, 350),10)
@@ -84,6 +96,7 @@ while run:
 	screen.fill(BLACK)
 	ball.draw()
 	ball.move()
+	ball.move_with_keys()
 	pygame.display.flip()
 
 pygame.quit()
