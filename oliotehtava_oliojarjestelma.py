@@ -1,5 +1,4 @@
 
-
 class Facebook:
 	def __init__(self):
 		self.users = []
