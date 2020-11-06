@@ -1,4 +1,5 @@
 import pygame
+from time import sleep
 
 pygame.init()
 
@@ -16,18 +17,18 @@ GREEN = (0,255,0)
 FPS = 60
 
 class Olio:
-	def __init__(self):
+	def __init__(self, player_color, start_point):
+		self.player_color = player_color
 		self.name = "Jarmo"
 		self.speed = 3
-		self.pos_x = 200
-		self.pos_y = 200
+		self.pos_x = start_point[0]
+		self.pos_y = start_point[1]
 		self.size = 20
 		self.rects = self.buttons()
-		self.pos = pygame.mouse.get_pos()
-		self.color = WHITE
+		self.button_color = WHITE
 
 	def draw(self):
-		pygame.draw.circle(screen, RED,(self.pos_x, self.pos_y),self.size)
+		pygame.draw.circle(screen, self.player_color,(self.pos_x, self.pos_y),self.size)
 		self.buttons()
 
 	def move(self):
@@ -56,33 +57,63 @@ class Olio:
 			self.pos_x -= self.speed
 			self.pos_y -= self.speed
 
-	def move_with_keys(self):
-		keys = pygame.key.get_pressed()
-		if keys[pygame.K_w] and self.pos_y > self.size:
-			self.pos_y -= self.speed
-		if keys[pygame.K_s] and self.pos_y < screen_width - self.size:
-			self.pos_y += self.speed
-		if keys[pygame.K_a] and self.pos_x > self.size:
-			self.pos_x -= self.speed
-		if keys[pygame.K_d] and self.pos_x < screen_width - self.size:
-			self.pos_x += self.speed
-		
 
-	def buttons(self, color=WHITE):
-		up = pygame.draw.circle(screen, color,(70, 300),10)
-		down = pygame.draw.circle(screen, color,(70, 350),10)
-		left = pygame.draw.circle(screen, color,(45, 325),10)
-		right = pygame.draw.circle(screen, color,(95, 325),10)
+	def move_with_keys(self, player):
+		keys = pygame.key.get_pressed()
+		if player == 1:
+			if keys[pygame.K_w] and self.pos_y > self.size:
+				self.pos_y -= self.speed
+				self.draw_nose("up")
+			if keys[pygame.K_s] and self.pos_y < screen_width - self.size:
+				self.pos_y += self.speed
+				self.draw_nose("down")
+			if keys[pygame.K_a] and self.pos_x > self.size:
+				self.pos_x -= self.speed
+				self.draw_nose("left")
+			if keys[pygame.K_d] and self.pos_x < screen_width - self.size:
+				self.pos_x += self.speed
+				self.draw_nose("right")
+			
+		if player == 2:
+			if keys[pygame.K_UP] and self.pos_y > self.size:
+				self.pos_y -= self.speed
+				self.draw_nose("up")
+			if keys[pygame.K_DOWN] and self.pos_y < screen_width - self.size:
+				self.pos_y += self.speed
+				self.draw_nose("down")
+			if keys[pygame.K_LEFT] and self.pos_x > self.size:
+				self.pos_x -= self.speed
+				self.draw_nose("left")
+			if keys[pygame.K_RIGHT] and self.pos_x < screen_width - self.size:
+				self.pos_x += self.speed
+				self.draw_nose("right")
+
+
+	def buttons(self, button_color=WHITE):
+		up = pygame.draw.circle(screen, button_color,(70, 300),10)
+		down = pygame.draw.circle(screen, button_color,(70, 350),10)
+		left = pygame.draw.circle(screen, button_color,(45, 325),10)
+		right = pygame.draw.circle(screen, button_color,(95, 325),10)
 		
-		koil = pygame.draw.circle(screen, color,(90, 305),7)
-		kaak = pygame.draw.circle(screen, color,(90, 345),7)
-		loun = pygame.draw.circle(screen, color,(50, 345),7)
-		luod = pygame.draw.circle(screen, color,(50, 305),7)
+		koil = pygame.draw.circle(screen, button_color,(90, 305),7)
+		kaak = pygame.draw.circle(screen, button_color,(90, 345),7)
+		loun = pygame.draw.circle(screen, button_color,(50, 345),7)
+		luod = pygame.draw.circle(screen, button_color,(50, 305),7)
 		
 		return up, down, left, right, koil, kaak, loun, luod
 
+	def draw_nose(self, direction):
+		if direction == "up":
+			pygame.draw.circle(screen, self.player_color, (self.pos_x, self.pos_y - self.size), 10)
+		elif direction == "down":
+			pygame.draw.circle(screen, self.player_color, (self.pos_x , self.pos_y + self.size), 10)
+		elif direction == "left":
+			pygame.draw.circle(screen, self.player_color, (self.pos_x - self.size, self.pos_y), 10)
+		elif direction == "right":
+			pygame.draw.circle(screen, self.player_color, (self.pos_x + self.size, self.pos_y), 10)
 
-ball = Olio()
+ball = Olio(RED, (50,50))
+ball_2 = Olio(GREEN, (350,350))
 clock = pygame.time.Clock()
 
 run = True
@@ -96,7 +127,10 @@ while run:
 	screen.fill(BLACK)
 	ball.draw()
 	ball.move()
-	ball.move_with_keys()
+	ball.move_with_keys(1)
+	ball_2.draw()
+	ball_2.move()
+	ball_2.move_with_keys(2)
 	pygame.display.flip()
 
 pygame.quit()
