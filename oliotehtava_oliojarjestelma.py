@@ -4,7 +4,6 @@ class Facebook:
 	def __init__(self):
 		self.users = []
 
-
 	def add_user(self, user):
 		self.users.append(user)
 
@@ -14,7 +13,14 @@ class Facebook:
 	def show_users(self):
 		print(self.users)
 
-
+	#Anna seurattava user, printtaa kaverilistan ja viestit
+	def seuraaja(self, user):
+		print("FRIENDSLIST\n")
+		for x in user.friends:
+			print(f'- {x.username}')
+		print("\nMESSAGES\n")
+		for x in user.messages:
+			print(f'- {x}')
 class User:
 	def __init__(self, username):
 		self.username = username
@@ -29,11 +35,15 @@ class User:
 		self.friends.pop(friend)
 
 	def send_message(self, to, message):
-		print(app.users)
+		to.messages.append(f'from: {self.username}, message: {message}')
 
 app = Facebook()
 
 markku = User("Markku")
 kalle = User("Kalle")
+maija = User("Maija")
 
 markku.send_message(kalle, "moro")
+maija.send_message(kalle, "moi, oon maija")
+kalle.add_friend(markku)
+app.seuraaja(kalle)
