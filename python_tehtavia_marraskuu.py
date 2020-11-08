@@ -192,11 +192,11 @@ def oliotehtava():
 
 def nimigeneraattori():
 	import string
-	import random
+	from random import choice
 	a = ["a", "e", "i", "o", "u", "y"]
 	b = [x for x in string.ascii_lowercase if x not in a]
-	eka_tavu = [random.choice(a), random.choice(b), random.choice(a)]
-	toka_tavu = [random.choice(b), random.choice(a)]
+	eka_tavu = [choice(a), choice(b), choice(a)]
+	toka_tavu = [choice(b), choice(a)]
 	name = eka_tavu + toka_tavu
 	result = ""
 	for x in name:
