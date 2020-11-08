@@ -19,7 +19,7 @@ class Facebook:
 			print(f'- {x.username}')
 		print("\nMESSAGES\n")
 		for x in user.messages:
-			print(f'- {x}')
+			print(x)
 class User:
 	def __init__(self, username):
 		self.username = username
@@ -34,7 +34,16 @@ class User:
 		self.friends.pop(friend)
 
 	def send_message(self, to, message):
-		to.messages.append(f'from: {self.username}, message: {message}')
+		to.messages.append(message)
+
+
+class Message:
+	def __init__(self, actual_text):
+		self.actual_text = actual_text
+
+	def show_text(self):
+		return self.actual_text
+
 
 app = Facebook()
 
@@ -42,7 +51,7 @@ markku = User("Markku")
 kalle = User("Kalle")
 maija = User("Maija")
 
-markku.send_message(kalle, "moro")
-maija.send_message(kalle, "moi, oon maija")
+markku.send_message(kalle, Message("hei olen markku"))
+maija.send_message(kalle, Message("moro, oon maija"))
 kalle.add_friend(markku)
 app.seuraaja(kalle)
