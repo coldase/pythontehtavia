@@ -20,6 +20,7 @@ class Facebook:
 		print("\nMESSAGES\n")
 		for x in user.messages:
 			print(x)
+			
 class User:
 	def __init__(self, username):
 		self.username = username

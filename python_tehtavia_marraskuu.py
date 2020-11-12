@@ -203,6 +203,7 @@ def nimigeneraattori():
 		result+=x
 	return result
 
+
 #################################
 # Tiedostojen kirjoitus ja luku #
 #################################
