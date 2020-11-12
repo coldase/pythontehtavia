@@ -8,7 +8,7 @@ class Vitsi:
 		self.id = id
 		self.joke = joke
 
-#Hakee vitsit rajapinnasta
+#Hakee vitsit API
 def get_jokes():
 	url = "https://icanhazdadjoke.com/"
 	res = requests.get(url, headers={"Accept":"application/json"})
