@@ -35,4 +35,4 @@ def tee_vitsi_tiedosto(filename):
 		for vitsi in make_joke_list():
 			file.write(vitsi.joke+"\n")
 
-tee_vitsi_tiedosto("testivitsi")
+tee_vitsi_tiedosto("vitsitiedosto")
