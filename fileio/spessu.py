@@ -1,4 +1,4 @@
-#requests -kirjasto täytyy asentaa, "pip install requests"
+#requests -kirjasto täytyy asentaa, "pip install requests -> cmd"
 import requests
 import json
 
