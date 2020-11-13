@@ -1,6 +1,7 @@
 #requests -kirjasto täytyy asentaa, "pip install requests -> cmd"
 import requests
 import json
+import time
 
 #Vitsi classi
 class Vitsi:
@@ -18,10 +19,13 @@ def get_jokes():
 #Tekee listan Vitsi -olioita
 def make_joke_list():
 	jokes = []
-	for x in range(20):
+	for x in range(10):
+		time.sleep(0.1)
+		print(f"Adding joke --> {x}...")
 		vitsi = get_jokes()
 		jokes.append(Vitsi(vitsi["id"], vitsi["joke"]))
 
+	print("File done!")
 	return jokes
 
 #Tulostaa kaikki vitsit
